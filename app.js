@@ -1,21 +1,12 @@
-/**
- * Title: Write a program using JavaScript on App
- * Author: Hasibul Islam
- * Portfolio: https://devhasibulislam.vercel.app
- * Linkedin: https://linkedin.com/in/devhasibulislam
- * GitHub: https://github.com/devhasibulislam
- * Facebook: https://facebook.com/devhasibulislam
- * Instagram: https://instagram.com/devhasibulislam
- * Twitter: https://twitter.com/devhasibulislam
- * Pinterest: https://pinterest.com/devhasibulislam
- * WhatsApp: https://wa.me/8801906315901
- * Telegram: devhasibulislam
- * Date: 09, November 2023
- */
+
+const istanbulMiddleware = require('istanbul-middleware');
+
+
 
 /* external imports */
 const express = require("express");
 const cors = require("cors");
+const session = require('express-session');
 require("dotenv").config();
 
 /* internal import */
@@ -24,14 +15,29 @@ const error = require("./middleware/error.middleware");
 /* application level connection */
 const app = express();
 
+
+// Setup istanbul middleware
+istanbulMiddleware.hookLoader(__dirname);
+// Expose coverage endpoint
+app.use('/coverage', istanbulMiddleware.createHandler({resetOnGet: true}));
+
+
+// Setup session management
+app.use(session({
+    secret: 'c4a8bbe13eccaa377fddc919715abbb2',  // Replace 'your-secret-key' with your actual secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === 'production' }  // Secure cookies in production
+}));
+
 /* middleware connections */
 app.use(
-  cors({
-    origin: process.env.ORIGIN_URL,
-    methods: "GET, PATCH, POST, DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
+    cors({
+        origin: process.env.ORIGIN_URL,
+        methods: "GET, PATCH, POST, DELETE",
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+    })
 );
 app.use(express.json());
 
@@ -52,17 +58,17 @@ app.use(error);
 
 /* connection establishment */
 app.get("/", (req, res, next) => {
-  try {
-    res.status(200).json({
-      acknowledgement: true,
-      message: "OK",
-      description: "The request is OK",
-    });
-  } catch (err) {
-    next(err);
-  } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
-  }
+    try {
+        res.status(200).json({
+            acknowledgement: true,
+            message: "OK",
+            description: "The request is OK",
+        });
+    } catch (err) {
+        next(err);
+    } finally {
+        console.log(`Route: ${req.url} || Method: ${req.method}`);
+    }
 });
 
 /* export application */
