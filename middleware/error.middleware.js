@@ -13,7 +13,7 @@
  * Date: 09, November 2023
  */
 
-function error(err, _, res, _) {
+function error(err, _, res) {
   res.send({
     acknowledgement: false,
     message: err.name,
