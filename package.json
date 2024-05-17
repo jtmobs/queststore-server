@@ -4,8 +4,8 @@
   "description": "an intuitive eco shop server",
   "main": "index.js",
   "engines": {
-    "node": ">=16.x",
-    "npm": ">=8.x"
+    "node": "20.x",
+    "npm": "10.x"
   },
   "scripts": {
     "build": "babel . -d dist",
@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.24.5",
     "babel-plugin-istanbul": "^6.1.1",
     "express-session": "^1.18.0",
-    "istanbul-middleware": "git+https://github.com/jtmobs/istanbul-middleware.git",
+    "istanbul-middleware": "0.2.2",
     "nodemon": "^3.0.1",
     "nyc": "^15.1.0"
   }
