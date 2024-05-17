@@ -31,6 +31,16 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@babel/node": "^7.23.9",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-plugin-istanbul": "^6.1.1",
     "nodemon": "^3.0.1",
     "istanbul-middleware": "git+https://github.com/jtmobs/istanbul-middleware.git"
   }
