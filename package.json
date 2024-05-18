@@ -8,7 +8,7 @@
     "npm": "10.x"
   },
   "scripts": {
-    "build": "babel . -d public",
+    "build": "babel . -d public --ignore node_modules --verbose",
     "start": "node index.js",
     "dev": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
