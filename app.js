@@ -10,12 +10,12 @@ const app = express();
 
 /* middleware connections */
 app.use(
-  cors({
-    origin: process.env.ORIGIN_URL,
-    methods: "GET, PATCH, POST, DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
+    cors({
+        origin: process.env.ORIGIN_URL,
+        methods: "GET, PATCH, POST, DELETE",
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+    })
 );
 app.use(express.json());
 
@@ -36,17 +36,17 @@ app.use(error);
 
 /* connection establishment */
 app.get("/", (req, res, next) => {
-  try {
-    res.status(200).json({
-      acknowledgement: true,
-      message: "OK",
-      description: "The request is OK",
-    });
-  } catch (err) {
-    next(err);
-  } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
-  }
+    try {
+        res.status(200).json({
+            acknowledgement: true,
+            message: "OK",
+            description: "The request is OK",
+        });
+    } catch (err) {
+        next(err);
+    } finally {
+        console.log(`Route: ${req.url} || Method: ${req.method}`);
+    }
 });
 
 /* export application */
