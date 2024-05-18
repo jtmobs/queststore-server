@@ -1,5 +1,10 @@
+
+const istanbulMiddleware = require('istanbul-middleware');
+
+/* external imports */
 const express = require("express");
 const cors = require("cors");
+const session = require('express-session');
 require("dotenv").config();
 
 /* internal import */
@@ -7,6 +12,19 @@ const error = require("./middleware/error.middleware");
 
 /* application level connection */
 const app = express();
+
+// Setup istanbul middleware
+istanbulMiddleware.hookLoader(__dirname);
+// Expose coverage endpoint
+app.use('/coverage', istanbulMiddleware.createHandler({ resetOnGet: true }));
+
+// Setup session management
+app.use(session({
+    secret: 'c4a8bbe13eccaa377fddc919715abbb2',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === 'production' }
+}));
 
 /* middleware connections */
 app.use(
