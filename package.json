@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "babel . -d public",
-    "start": "node public/index.js",
+    "start": "node index.js",
     "dev": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
